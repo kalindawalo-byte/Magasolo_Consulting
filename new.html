@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Magasolo Consulting | Building Africa's Future</title>
+  <meta name="description" content="Integrated solutions in Project Financing, Development, Investment Prospecting, and Governance Training to power Africa's sustainable future.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #0f172a;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Small background circles (4px dots) - subtle pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: radial-gradient(#0056b3 0.8px, transparent 0.8px);
+      background-size: 24px 24px;
+      opacity: 0.12;
+      z-index: 0;
+    }
+
+    /* Ensure all content sits above dots */
+    .navbar, .section, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    :root {
+      --primary: #0056b3;
+      --primary-dark: #003d82;
+      --secondary: #cf374b;
+      --secondary-dark: #a82c3d;
+      --dark-navy: #09121d;
+      --gray-100: #f8fafc;
+      --shadow-sm: 0 12px 24px -12px rgba(0,0,0,0.08);
+      --shadow-md: 0 20px 35px -15px rgba(0,0,0,0.12);
+      --shadow-lg: 0 30px 45px -18px rgba(0,0,0,0.2);
+    }
+
+    /* No circular elements – ensure border-radius is 0 or very small */
+    img, div, button, a, section, .card, .badge, .shape, .placeholder, .partner-card, .testimonial-card, .service-btn, .contact-card {
+      border-radius: 0;
+    }
+
+    /* Allow slight rounding only on buttons and badges for aesthetics, but no circles */
+    .btn, .value-badge, .service-btn, .testimonial-card, .partner-card {
+      border-radius: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 8px 20px rgba(0,86,179,0.2);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 30px -8px rgba(0,86,179,0.4);
+    }
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+      box-shadow: 0 8px 20px rgba(207,55,75,0.2);
+    }
+    .btn-secondary:hover {
+      background: var(--secondary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 30px -8px rgba(207,55,75,0.4);
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,86,179,0.08);
+      padding: 0.8rem 2rem;
+    }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .navbar-logo {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 0;
+    }
+    .brand-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), #001f4a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .tagline {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e293b;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* Sections all white background */
+    .section {
+      padding: 6rem 2rem;
+      background: #ffffff;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    /* Images - No rounded corners */
+    .stock-img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 0.85;
+      object-fit: cover;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.4s ease, box-shadow 0.3s;
+      border-radius: 0;
+    }
+    .stock-img:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-md);
+    }
+    .portrait-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      box-shadow: var(--shadow-lg);
+      border-radius: 0;
+    }
+
+    /* Badges */
+    .badge-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .value-badge {
+      background: var(--gray-100);
+      padding: 0.7rem 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+    }
+    .value-badge:hover {
+      transform: translateY(-3px);
+      background: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Services */
+    .service-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.3rem;
+    }
+    .service-btn {
+      background: white;
+      border: 1px solid #eef2ff;
+      padding: 1.3rem 0.8rem;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      transition: all 0.3s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--primary);
+    }
+    .service-btn i {
+      font-size: 1.2rem;
+    }
+    .service-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 15px 25px -12px rgba(0,86,179,0.4);
+      transform: translateY(-4px);
+    }
+    .service-btn:hover:not(.active) {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+    .service-detail {
+      background: var(--gray-100);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border-radius: 0;
+    }
+    .service-detail h3 {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), #002856);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .service-detail h4 {
+      font-size: 1.1rem;
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .bullet-list {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+    .bullet-list li {
+      padding-left: 1.8rem;
+      position: relative;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+    .bullet-list li::before {
+      content: "✦";
+      color: var(--secondary);
+      position: absolute;
+      left: 0;
+    }
+
+    /* Cards */
+    .testimonial-card, .partner-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+      border: 1px solid #f0f2f5;
+    }
+    .testimonial-card:hover, .partner-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .testimonial-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .partner-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+    }
+
+    /* Contact form */
+    .contact-card {
+      background: white;
+      padding: 3rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(0,86,179,0.08);
+      border-radius: 0;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid #e2e8f0;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      border-radius: 0;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,86,179,0.15);
+      outline: none;
+    }
+
+    /* Footer dark navy */
+    footer {
+      background: var(--dark-navy);
+      color: #cbd5e6;
+      padding: 3.5rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .social-icons a {
+      color: #cbd5e6;
+      margin-right: 1.2rem;
+      font-size: 1.3rem;
+      transition: 0.2s;
+      display: inline-block;
+    }
+    .social-icons a:hover {
+      color: white;
+      transform: translateY(-2px);
+    }
+    .footer-links a {
+      display: block;
+      color: #cbd5e6;
+      text-decoration: none;
+      margin: 0.5rem 0;
+    }
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .grid-2col, .grid-3col {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: white;
+        padding: 1.5rem;
+        width: 100%;
+        margin-top: 1rem;
+        box-shadow: var(--shadow-md);
+        border-radius: 8px;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+      .service-buttons {
+        grid-template-columns: 1fr;
+      }
+      .section {
+        padding: 4rem 1.5rem;
+      }
+    }
+
+    .section-title {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(125deg, var(--primary), #001f4a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo-area">
+      <img src="logo.png" alt="Magasolo Consulting Logo" class="navbar-logo" onerror="this.src='https://placehold.co/52x52/0056b3/white?text=M'">
+      <div class="brand-text">
+        <h1>MAGASOLO CONSULTING</h1>
+        <div class="tagline">Building Africa's Future</div>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero Section - image with no rounded corners -->
+  <section id="home" class="section">
+    <div class="container grid-2col">
+      <img src="https://images.pexels.com/photos/9491008/pexels-photo-9491008.jpeg?auto=compress&cs=tinysrgb&w=800" alt="African city development and infrastructure" class="stock-img reveal">
+      <div class="reveal">
+        <h2 class="section-title" style="font-size: 3.4rem;">Building African Prosperity from the Ground Up</h2>
+        <p style="margin: 1.5rem 0; font-size: 1.1rem; color: #334155;">Integrated solutions in Project Financing, Development, Investment Prospecting, and Governance Training to power Africa's sustainable future.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#services" class="btn btn-secondary"><i class="fas fa-compass"></i> Explore Services</a>
+          <a href="#contact" class="btn btn-primary"><i class="fas fa-bullhorn"></i> Start a Project</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section - image with no rounded corners -->
+  <section id="about" class="section">
+    <div class="container grid-2col">
+      <img src="https://images.pexels.com/photos/1181422/pexels-photo-1181422.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Business team discussing strategy" class="stock-img reveal">
+      <div class="reveal">
+        <div class="badge-grid">
+          <span class="value-badge">Strategic</span>
+          <span class="value-badge">Innovative</span>
+          <span class="value-badge">Sustainable</span>
+          <span class="value-badge">Impactful</span>
+        </div>
+        <h2 class="section-title">The Magasolo Method</h2>
+        <p style="margin-bottom: 2rem; font-size: 1.05rem;">An integrated approach that bridges financial opportunity and tangible execution. We ensure projects launch successfully and thrive for decades, backed by deep local insight.</p>
+        <a href="#contact" class="btn btn-secondary"><i class="fas fa-handshake"></i> Partner With Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section">
+    <div class="container grid-2col">
+      <div class="service-detail reveal" id="serviceDynamic">
+        <h3 id="serviceTitle">Strategic Investment Prospecting</h3>
+        <h4 id="serviceSubtitle">Intelligent Opportunity Identification & Validation</h4>
+        <p id="serviceDesc">We act as your on-the-ground intelligence, leveraging our deep network and market knowledge to source and vet opportunities in energy, infrastructure, and smart city development.</p>
+        <ul class="bullet-list" id="serviceFeatures">
+          <li>Market Intelligence & Opportunity Mapping</li>
+          <li>Risk Assessment & Feasibility Studies</li>
+          <li>Due Diligence & Partner Vetting</li>
+          <li>Investment Pipeline Development</li>
+        </ul>
+      </div>
+      <div class="service-buttons reveal">
+        <button class="service-btn" data-service="investment"><i class="fas fa-chart-line"></i> Investment Prospecting</button>
+        <button class="service-btn" data-service="development"><i class="fas fa-hard-hat"></i> Project Development</button>
+        <button class="service-btn" data-service="financing"><i class="fas fa-coins"></i> Project Financing</button>
+        <button class="service-btn" data-service="governance"><i class="fas fa-university"></i> Governance Training</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Section with magasolopic.jpeg (no rounded corners) -->
+  <section id="leadership" class="section">
+    <div class="container grid-3col">
+      <div class="reveal" style="background: #f8fafc; padding: 2rem;">
+        <p><strong>Mr. Vickson Ncube</strong> is a senior accounting and finance consultant with over 35 years of experience across public, private, and development sectors in Africa. Former Founder and CEO of the Pan African Federation of Accountants (PAFA).</p>
+      </div>
+      <div class="reveal">
+        <img src="magasolopic.jpeg" alt="Mr. Vickson Ncube - Chairman" class="portrait-img" onerror="this.src='https://placehold.co/400x500/0056b3/white?text=VN'">
+      </div>
+      <div class="reveal" style="background: #f8fafc; padding: 2rem;">
+        <p>Chartered Accountant, energy veteran, and pioneer in smart city & renewable energy development. He has advised governments and financial institutions on governance, regulatory reform, and institutional strengthening.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Client Voices</h2>
+      <div class="grid-3col">
+        <div class="testimonial-card reveal"><div class="testimonial-icon"><i class="fas fa-quote-right"></i></div><p style="margin-bottom: 1rem; font-style: italic;">“Magasolo's prospecting identified game-changing opportunities. Unparalleled ground intelligence.”</p><strong>– Investment Director</strong></div>
+        <div class="testimonial-card reveal"><div class="testimonial-icon"><i class="fas fa-sun"></i></div><p style="margin-bottom: 1rem; font-style: italic;">“End-to-end development transformed our 200MW solar project, 40% cost savings.”</p><strong>– Minister of Energy</strong></div>
+        <div class="testimonial-card reveal"><div class="testimonial-icon"><i class="fas fa-landmark"></i></div><p style="margin-bottom: 1rem; font-style: italic;">“Governance training made our board a model for corporate governance in the region.”</p><strong>– Chairman, Water Authority</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted By Section -->
+  <section id="partners" class="section">
+    <div class="container">
+      <h2 style="font-size: 2.2rem; text-align: center; margin-bottom: 2.5rem; font-weight: 800; background: linear-gradient(125deg, var(--primary), #001f4a); -webkit-background-clip: text; background-clip: text; color: transparent;">Trusted By</h2>
+      <div class="grid-3col" style="gap: 1.8rem;">
+        <div class="partner-card reveal"><div class="partner-icon"><i class="fas fa-building"></i></div><h3>AfDB</h3></div>
+        <div class="partner-card reveal"><div class="partner-icon"><i class="fas fa-globe-africa"></i></div><h3>AU Commission</h3></div>
+        <div class="partner-card reveal"><div class="partner-icon"><i class="fas fa-chart-line"></i></div><h3>World Bank</h3></div>
+        <div class="partner-card reveal"><div class="partner-icon"><i class="fas fa-hand-holding-usd"></i></div><h3>UNDP</h3></div>
+        <div class="partner-card reveal"><div class="partner-icon"><i class="fas fa-handshake"></i></div><h3>ECOWAS</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container contact-card reveal">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">Launch Strategic Partnership</h2>
+      <form action="https://formsubmit.co/chilesheluo44@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New Magasolo Consulting Inquiry">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.2rem;">
+          <input type="text" name="first_name" placeholder="First name" required>
+          <input type="text" name="last_name" placeholder="Last name" required>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.2rem;">
+          <input type="email" name="email" placeholder="Email address" required>
+          <input type="tel" name="phone" placeholder="Phone number">
+        </div>
+        <input type="text" name="organization" placeholder="Organization" style="width:100%; margin-bottom: 1.2rem;">
+        <select name="service_interest" required style="width:100%; margin-bottom: 1.2rem;">
+          <option value="">Select service of interest</option>
+          <option>Investment Prospecting</option>
+          <option>Project Development</option>
+          <option>Project Financing</option>
+          <option>Governance Training</option>
+        </select>
+        <textarea name="message" rows="5" placeholder="Describe your project vision, location, and current stage..." required style="margin-bottom: 1.8rem;"></textarea>
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary" style="padding: 14px 38px;"><i class="fas fa-paper-plane"></i> Launch Strategic Partnership</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div><h3 style="margin-bottom: 1rem;">MAGASOLO CONSULTING</h3><p>Financing and Building Africa's Future through integrated solutions in project development, financing, and governance.</p><div class="social-icons" style="margin-top: 1.5rem;"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a></div></div>
+    <div class="footer-links"><h4>Quick Links</h4><a href="#home">Home</a><a href="#about">The Magasolo Method</a><a href="#services">Our Services</a><a href="#leadership">Leadership</a><a href="#contact">Contact</a></div>
+    <div><h4>Contact Info</h4><p><i class="fas fa-map-marker-alt"></i> Tokyo Way, Lusaka, Zambia</p><p><i class="fas fa-phone-alt"></i> +260 966 842 344 | +27 781 585 840</p><p><i class="fas fa-envelope"></i> Vicksonn@magasolo.africa</p></div>
+  </div>
+  <div style="text-align: center; margin-top: 2rem; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">© 2025 Magasolo Consulting – Building Africa's Prosperity</div>
+</footer>
+
+<script>
+  // Service content
+  const servicesMap = {
+    investment: { title: "Strategic Investment Prospecting", subtitle: "Intelligent Opportunity Identification & Validation", desc: "We act as your on-the-ground intelligence, leveraging our deep network and market knowledge to source and vet opportunities in energy, infrastructure, and smart city development.", features: ["Market Intelligence & Opportunity Mapping", "Risk Assessment & Feasibility Studies", "Due Diligence & Partner Vetting", "Investment Pipeline Development"] },
+    development: { title: "Project Development", subtitle: "End-to-End Development Execution", desc: "Comprehensive development advisory from feasibility studies to permitting, technical specifications, and stakeholder management.", features: ["Feasibility Studies & Master Planning", "Technical Specifications & Design", "Permitting & Regulatory Compliance", "Stakeholder Engagement"] },
+    financing: { title: "Project Financing", subtitle: "Strategic Capital Solutions", desc: "We develop bankable financial models, optimize capital structure, and lead negotiations to secure funding from equity, debt, and development partners.", features: ["Financial Modeling & Structuring", "Capital Raising & Investor Relations", "Deal Negotiation & Closing", "Post-Investment Monitoring"] },
+    governance: { title: "Governance Training", subtitle: "Building Institutional Excellence", desc: "Tailored programs in board effectiveness, strategic leadership for public utilities, financial stewardship, and ethical governance.", features: ["Board Effectiveness & Governance", "Strategic Leadership Development", "Financial Management Training", "Compliance & Ethics Programs"] }
+  };
+  const btns = document.querySelectorAll('.service-btn');
+  const titleEl = document.getElementById('serviceTitle');
+  const subtitleEl = document.getElementById('serviceSubtitle');
+  const descEl = document.getElementById('serviceDesc');
+  const featuresList = document.getElementById('serviceFeatures');
+
+  function setActive(key) {
+    const data = servicesMap[key];
+    if(data) {
+      titleEl.innerText = data.title;
+      subtitleEl.innerText = data.subtitle;
+      descEl.innerText = data.desc;
+      featuresList.innerHTML = data.features.map(f => `<li>${f}</li>`).join('');
+    }
+    btns.forEach(btn => {
+      if(btn.dataset.service === key) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+  }
+  btns.forEach(btn => btn.addEventListener('click', () => setActive(btn.dataset.service)));
+  setActive('investment');
+
+  // Mobile menu
+  const hamburger = document.getElementById('hamburgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('show'));
+  document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('show')));
+
+  // Smooth scroll offset
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if(targetId === '#') return;
+      const target = document.querySelector(targetId);
+      if(target) {
+        e.preventDefault();
+        const offset = 80;
+        const pos = target.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: pos - offset, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
